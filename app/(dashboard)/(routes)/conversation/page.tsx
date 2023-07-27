@@ -1,9 +1,11 @@
 "use client"
 
+import axios from "axios"
 import * as z from "zod"
 import { MessageSquare } from 'lucide-react';
 import { Heading } from "@/components/Heading";
 
+import { useRouter} from "next/navigation"
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod"
 import { formSchema } from "./constants";
@@ -17,6 +19,8 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
 const ConversationPage = () => {
+  
+  
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -27,7 +31,11 @@ const ConversationPage = () => {
   const isLoading = form.formState.isSubmitting;
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    console.log(values);
+    try {
+
+    } catch (error: any) {
+      console.log(error)
+    }
   }
 
   return (
@@ -62,7 +70,7 @@ const ConversationPage = () => {
                 )}
               />
               <Button className="col-span-12 lg:col-span-2 w-full"
-              disabled={isLoading}>
+                disabled={isLoading}>
                 Generate
               </Button>
             </form>
